@@ -1,0 +1,316 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+@font-face {
+  font-family: Lato;
+  src: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/176026/ProximaNova-Regular.otf);
+  font-weight: 300;
+}
+body, html {
+  font-family: Lato;
+}
+
+h1 {
+  font-size: 28px;
+  line-height: 40px;
+  margin-top: 20px;
+}
+h1 a {
+  text-decoration: none;
+  color: #48c15e;
+}
+h1 p {
+  font-size: 22px;
+}
+
+#grid {
+  -moz-transform: translate(1px, 0px);
+  -ms-transform: translate(1px, 0px);
+  -webkit-transform: translate(1px, 0px);
+  transform: translate(1px, 0px);
+}
+
+/* GRAPH - 1 */
+#graph-1 {
+  stroke: url(#gradient-1);
+  stroke-width: 1.5;
+  fill: transparent;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  -moz-animation: lineani 1.3s linear forwards;
+  -webkit-animation: lineani 1.3s linear forwards;
+  animation: lineani 1.3s linear forwards;
+}
+
+#graph-2 {
+  stroke: url(#gradient-2);
+  stroke-width: 1.5;
+  fill: transparent;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  -moz-animation: lineani 1.3s linear forwards;
+  -webkit-animation: lineani 1.3s linear forwards;
+  animation: lineani 1.3s linear forwards;
+}
+
+#poly-1 {
+  fill: url(#gradient-3);
+}
+
+#poly-2 {
+  fill: url(#gradient-4);
+}
+
+@-moz-keyframes lineani {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@-webkit-keyframes lineani {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes lineani {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.underlay {
+  stroke-width: 5;
+  fill: transparent;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: #24303a;
+}
+
+#circle-graph-1 {
+  stroke: url(#gradient-1);
+  stroke-width: 5;
+  fill: transparent;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.chart-circle {
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+#circle-graph-2 {
+  stroke: url(#gradient-2);
+  stroke-width: 5;
+  fill: transparent;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+body {
+  background-color: #24303a;
+  color: white;
+  text-align: center;
+}
+
+.charts-container {
+  padding: 20px;
+  width: 100%;
+  max-width: 1024px;
+  display: inline-block;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.chart {
+  color: #4a667a;
+  text-align: left;
+  position: relative;
+  height: auto;
+  background-color: #1e2730;
+  display: inline-block;
+  float: left;
+  position: relative;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 10px;
+  padding: 15px 20px 65px 20px;
+}
+.chart.circle {
+  padding: 15px 20px 40px 20px;
+}
+@media screen and (max-width: 700px) {
+  .chart {
+    width: calc(100% - 20px);
+  }
+}
+@media screen and (min-width: 700px) {
+  .chart {
+    width: calc(50% - 20px);
+  }
+}
+
+.title {
+  font-size: 22px;
+  margin-bottom: 12px;
+}
+
+.chart-circle {
+  display: inline-block;
+  position: relative;
+}
+
+.chart-svg {
+  position: relative;
+}
+
+.circle-percentage {
+  position: absolute;
+  color: white;
+  font-size: 48px;
+  left: 50%;
+  top: 50%;
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+@media screen and (max-width: 480px) {
+  .circle-percentage {
+    font-size: 32px;
+  }
+}
+
+.align-center {
+  text-align: center;
+}
+
+.chart-line {
+  width: 80%;
+}
+
+.valueX {
+  font-size: 14px;
+}
+
+.chart-values {
+  text-align: right;
+  font-size: 18px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 15px;
+}
+
+.h-value {
+  -moz-transition: ease-in-out 700ms;
+  -o-transition: ease-in-out 700ms;
+  -webkit-transition: ease-in-out 700ms;
+  transition: ease-in-out 700ms;
+  opacity: 0;
+}
+.h-value.visible {
+  opacity: 1;
+}
+
+.percentage-value {
+  -moz-transition: ease-in-out 700ms;
+  -o-transition: ease-in-out 700ms;
+  -webkit-transition: ease-in-out 700ms;
+  transition: ease-in-out 700ms;
+  color: #48c15e;
+  margin-top: 2px;
+  opacity: 0;
+}
+.percentage-value.negative {
+  color: #ef6670;
+}
+.percentage-value.visible {
+  opacity: 1;
+}
+
+.total-gain {
+  color: white;
+  font-size: 48px;
+}
+
+.triangle {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 28px 0 0 28px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+.triangle.red {
+  border-color: transparent transparent transparent #ef6670;
+}
+.triangle.green {
+  border-color: transparent transparent transparent #48c15e;
+}
+
+.horizontal,
+.vertical {
+  stroke-width: 0.1;
+  stroke: #4a667a;
+}
+
+/* CLEARFIX HELPER */
+.cf:before,
+.cf:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */
+}
+
+.cf:after {
+  clear: both;
+}
+
+/**
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+.cf {
+  *zoom: 1;
+}
+
+/*IRRELEVANT CSS*/
+.followlinks {
+  position: fixed;
+  right: 35px;
+  bottom: 15px;
+  display: table;
+}
+.followlinks a {
+  display: table-cell;
+  vertical-align: middle;
+  padding-left: 10px;
+  color: white;
+}
+.followlinks a svg path {
+  fill: white;
+}
+
+.heartIt {
+  margin-top: 50px;
+  margin-bottom: 80px;
+}
+.heartIt p {
+  font-size: 12px;
+  line-height: 40px;
+}
+.heartIt img {
+  width: 64px;
+  height: auto;
+  opacity: 0.7;
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+}
+
+.original {
+  color: #ef6670;
+  font-size: 14px;
+}
