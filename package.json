@@ -5,6 +5,12 @@
   "dependencies": {
     "@material-ui/core": "^3.5.1",
     "@material-ui/icons": "^3.0.1",
+    "axios": "^0.18.0",
+    "better-sqlite3": "^5.0.1",
+    "body-parser": "^1.18.3",
+    "concurrently": "^4.0.1",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
     "react-scripts": "2.1.1",
@@ -12,7 +18,8 @@
     "typeface-roboto": "^0.0.54"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "server": "node ./src/services/server.js",
+    "start": "concurrently --kill-others-on-fail \"react-scripts start\" \"yarn server\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

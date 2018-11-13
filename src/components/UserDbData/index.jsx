@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { Component } from 'react'
+import api from '../../services/api'
 
 import './index.css'
 
@@ -13,7 +14,7 @@ import Paper from '@material-ui/core/Paper';
 
 const styles = theme => ({
   root: {
-    width: '80%',
+    width: '100%',
     marginTop: theme.spacing.unit * 3,
     overflowX: 'auto',
   },
@@ -21,52 +22,67 @@ const styles = theme => ({
     minWidth: 700,
   },
 });
-
+/*
 let id = 0;
 function createData(profile, likes, comments, follows, unfollows, server_calls, created) {
   id += 1;
   return { id, profile, likes, comments, follows, unfollows, server_calls, created };
-}
-
+}*/
+/*
 const rows = [
   createData('cycling_apparel', 3, 10, 11, 12, 13, '2018-11-13'),
   createData('cycling_apparel', 3, 10, 11, 12, 13, '2018-11-13'),
   createData('cycling_apparel', 3, 10, 11, 12, 13, '2018-11-13')
-];
+];*/
 
-function UserDbData(props) {
-  const { classes } = props;
+class UserDbData extends Component {
 
-  return (
-    <div className="wrapper">
+  state = {
+    all_activities: []
+  }
+
+  componentDidMount() {
+    this.getAllActivities()
+  }
+
+  getAllActivities = async () => {
+    const response = await api.get('get_all_activities')
+    console.log(response.data.data)
+    this.setState({
+      all_activities: response.data.data
+    })
+  }
+
+  render() {
+    const { classes } = this.props;
+    return(
+      <div className="wrapper">
     <Paper className={classes.root}>
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell>id</TableCell>
-            <TableCell numeric>profile</TableCell>
+            <TableCell>profile</TableCell>
             <TableCell numeric>likes</TableCell>
             <TableCell numeric>commnets</TableCell>
             <TableCell numeric>follows</TableCell>
             <TableCell numeric>unfollows</TableCell>
             <TableCell numeric>server calls</TableCell>
-            <TableCell numeric>created</TableCell>
+            <TableCell>created</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => {
+          {this.state.all_activities.map(row => {
             return (
-              <TableRow key={row.id}>
-                <TableCell numeric>{row.id}</TableCell>
+              <TableRow key={row.rowid}>
                 <TableCell component="th" scope="row">
-                  {row.profile}
+                  {row.name}
                 </TableCell>
                 <TableCell numeric>{row.likes}</TableCell>
                 <TableCell numeric>{row.comments}</TableCell>
                 <TableCell numeric>{row.follows}</TableCell>
                 <TableCell numeric>{row.unfollows}</TableCell>
                 <TableCell numeric>{row.server_calls}</TableCell>
-                <TableCell numeric>{row.created}</TableCell>
+                <TableCell numeric>{row.day_filter}</TableCell>
               </TableRow>
             );
           })}
@@ -74,7 +90,8 @@ function UserDbData(props) {
       </Table>
     </Paper>
     </div>
-  );
+    )
+  }
 }
 
 UserDbData.propTypes = {
