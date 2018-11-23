@@ -1,15 +1,22 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './App.css';
 import MainBar from './components/MainBar'
-import UserDbData from './components/UserDbData'
+import MainContent from './components/MainContent'
+import { BrowserRouter } from 'react-router-dom'
+
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <MainBar/>
-        <UserDbData/>
+        <BrowserRouter>
+          <Fragment>
+            <MainBar />
+            <MainContent />
+          </Fragment>
+        </BrowserRouter>
       </div>
+
     );
   }
 }
