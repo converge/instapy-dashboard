@@ -19,3 +19,5 @@ Screenshot:
 4. http://localhost:3000
 
 5. Log will start to show up when you run your InstaPy instance
+
+![img](https://github.com/converge/instapy-dashboard/blob/master/screenshots/live-login.png)
