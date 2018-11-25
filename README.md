@@ -6,7 +6,7 @@ Screenshot:
 
 1. Install project dependencies:
 
-#### `yarn install`
+#### `npm install`
 
 2. Set InstaPy database path at src/services/server.js
 
@@ -14,7 +14,7 @@ Screenshot:
 
 3. Start the project
 
-#### `yarn start`
+#### `npm start`
 
 4. http://localhost:3000
 

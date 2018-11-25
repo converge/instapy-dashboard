@@ -1,6 +1,6 @@
 {
   "name": "instapy-dashboard",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^3.5.1",
@@ -8,11 +8,11 @@
     "axios": "^0.18.0",
     "better-sqlite3": "^5.0.1",
     "body-parser": "^1.18.3",
-    "concurrently": "^4.0.1",
+    "concurrently": "^4.1.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
-    "react": "^16.6.1",
-    "react-dom": "^16.6.1",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
     "socket.io": "^2.1.1",
@@ -22,7 +22,7 @@
   },
   "scripts": {
     "server": "node ./src/services/server.js",
-    "start": "concurrently --kill-others-on-fail \"react-scripts start\" \"yarn server\"",
+    "start": "concurrently --kill-others-on-fail \"react-scripts start\" \"npm server\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
