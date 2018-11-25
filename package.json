@@ -22,7 +22,7 @@
   },
   "scripts": {
     "server": "node ./src/services/server.js",
-    "start": "concurrently --kill-others-on-fail \"react-scripts start\" \"npm server\"",
+    "start": "concurrently --kill-others-on-fail \"react-scripts start\" \"npm run server\"",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
