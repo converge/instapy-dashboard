@@ -4,19 +4,20 @@ const Database = require('better-sqlite3')
 const cors = require('cors')
 const http = require('http').createServer(app)
 const io = require('socket.io')(http)
-// @todo: improve it ->
-const instapyRootFolder = '/Users/converge/Documents/workspace/InstaPy'
-INSTAPY_DB_LOCATION = `${instapyRootFolder}/db/instapy.db`
+const config = require('./configuration')
+INSTAPY_DB_LOCATION = `${config.instaPyFolder}/db/instapy.db`
 const db = new Database(INSTAPY_DB_LOCATION)
-var spawn = require('child_process').spawn;
 const utils = require('./utils')
 
-// Authorizes localhost
+// Authorizes log update
+const serverHost = config.allowedHosts
 io.origins((origin, callback) => {
-  if (origin !== 'http://localhost:3000') {
+  // allow only authorized hosts to access log files
+  if (serverHost === origin) {
+    return callback(null, true)
+  } else {
     return callback('origin not allowed', false);
   }
-  callback(null, true);
 });
 
 // Body Parser returns a function that acts as middleware. 
@@ -28,16 +29,25 @@ app.use(
   })
 )
 app.use(bodyParser.json())
-app.use(cors())
+app.use(cors({
+  origin: function(origin, callback) {
+    if (serverHost === origin) {
+      return callback(null, true);
+    } else {
+      return callback('origin not allowed!', false);
+    }
+  }
+}))
+// app.use(cors())
 
 // build log file structure
-logsFolder = utils.getLogsFolder(instapyRootFolder)
+logsFolder = utils.getLogsFolder(config.instaPyFolder)
 logFiles = []
 logsFolder.map((accountName) => {
   if (accountName !== 'relationship_data') {
     logFiles.push({
       account: accountName,
-      path: `${instapyRootFolder}/logs/${accountName}/general.log`
+      path: `${config.instaPyFolder}/logs/${accountName}/general.log`
     })
   }
 })
@@ -93,4 +103,4 @@ app.use(function (req, res) {
   })
 })
 
-console.log('REATFul API running on port: ' + port)
+console.log('RESTful API running on port: ' + port)

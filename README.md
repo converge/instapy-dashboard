@@ -6,7 +6,7 @@
 ```bash
 # brew install
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-# node and npm install
+# node, npm and git install
 brew install node npm git
 ```
 
@@ -18,16 +18,6 @@ cd instapy-dashboard
 npm install
 ```
 
-### 3. Set InstaPy path
-
-```bash
-vi src/services/server.js
-# Update instapyRootFolder variable with the right path to your InstaPy folder
-instapyRootFolder = '/path/to/InstaPy'
-```
-
----
-
 ## Linux Install
 
 ### 1. Install Project Dependencies:
@@ -35,6 +25,11 @@ instapyRootFolder = '/path/to/InstaPy'
 ```bash
 # node and npm
 sudo apt-get update ; sudo apt-get install nodejs npm git
+
+# Debian is still using a very old version of nodejs, update/install it:
+# Using Debian, as root
+curl -sL https://deb.nodesource.com/setup_11.x | bash -
+apt-get install -y nodejs
 ```
 
 ### 2. Install InstaPy-Dashboard
@@ -45,25 +40,32 @@ cd instapy-dashboard
 npm install
 ```
 
-### 3. Set InstaPy path
+## Project Setup
 
-```bash
-vi src/services/server.js
-# Update instapyRootFolder variable with the right path to your InstaPy folder
-instapyRootFolder = '/path/to/InstaPy'
+```js
+vi src/services/configuration.js
+
+# InstaPy root folder
+instaPyFolder: '/path/to/InstaPy'
+
+# server host (your computer host)
+serverHost: 'http://localhost:3001'
+
+# allowed connection
+allowedHosts: 'http://localhost:3000'
 ```
-
----
 
 ## Start the project
 
 ```bash
-npm run start
+npm start
 ```
 
-## Load the dashboard at http://localhost:3000
+### Load the dashboard at http://localhost:3000
 
-> Log will start to show up when you start your InstaPy instance
+#### Log will start to show up when you start your InstaPy instance
+
+#### For not localhost connection, check src/services/configuration.js for more instructions
 
 ## Screenshot:
 
