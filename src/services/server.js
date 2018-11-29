@@ -13,7 +13,7 @@ const utils = require('./utils')
 const serverHost = config.allowedHosts
 io.origins((origin, callback) => {
   // allow only authorized hosts to access log files
-  if (serverHost === origin) {
+  if (serverHost.indexOf(origin) !== -1) {
     return callback(null, true)
   } else {
     return callback('origin not allowed', false);
@@ -31,7 +31,7 @@ app.use(
 app.use(bodyParser.json())
 app.use(cors({
   origin: function(origin, callback) {
-    if (serverHost === origin) {
+    if (serverHost.indexOf(origin) !== -1) {
       return callback(null, true);
     } else {
       return callback('origin not allowed!', false);

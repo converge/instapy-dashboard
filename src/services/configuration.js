@@ -10,6 +10,6 @@ const config = {
   instaPyFolder: '/Users/converge/Documents/workspace/InstaPy',
   // the server IP (the one who run npm start)
   serverHost: 'http://localhost:3001',
-  allowedHosts: 'http://localhost:3000'
+  allowedHosts: ['http://localhost:3000']
 }
 module.exports = config
