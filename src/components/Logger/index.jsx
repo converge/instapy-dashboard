@@ -12,6 +12,7 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
+const config = require('../../services/configuration')
 
 const styles = theme => ({
   root: {
@@ -61,7 +62,7 @@ class Logger extends Component {
   }
 
   getAllActivities = async () => {
-    const io = socket('http://localhost:3001')
+    const io = socket(config.serverHost)
     io.on('newLogData', data => {
       // first record, arrow function to bring previous state
       this.setState(prevState => ({

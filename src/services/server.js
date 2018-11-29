@@ -38,7 +38,6 @@ app.use(cors({
     }
   }
 }))
-// app.use(cors())
 
 // build log file structure
 logsFolder = utils.getLogsFolder(config.instaPyFolder)

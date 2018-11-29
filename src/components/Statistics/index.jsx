@@ -31,7 +31,15 @@ class UserDbData extends Component {
 
   componentDidMount() {
     this.getAllActivities()
+    // adds 5segs timer to reload database data
+    this.timerId = setInterval(() => {
+      this.getAllActivities()
+    }, 5000);
+  }
 
+  componentWillUnmount() {
+    // clean timer
+    clearInterval(this.timeId)
   }
 
   getAllActivities = async () => {
