@@ -11,6 +11,13 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import { HashLoader } from 'react-spinners'
+import { css } from 'react-emotion'
+
+// emotion lib
+const override = css`
+    display: block;
+    margin: 15px auto;`;
 
 const styles = theme => ({
   root: {
@@ -26,7 +33,8 @@ const styles = theme => ({
 class UserDbData extends Component {
 
   state = {
-    all_activities: []
+    all_activities: [],
+    loading: true
   }
 
   componentDidMount() {
@@ -46,6 +54,9 @@ class UserDbData extends Component {
     const response = await api.get('get_all_activities')
     this.setState({
       all_activities: response.data.data
+    })
+    this.setState({
+      loading: false
     })
   }
 
@@ -84,6 +95,13 @@ class UserDbData extends Component {
               })}
             </TableBody>
           </Table>
+          <HashLoader
+          className={override}
+          sizeUnit={"px"}
+          size={50}
+          color={'#3f51b5'}
+          loading={this.state.loading}
+        />
         </Paper>
       </div>
     )

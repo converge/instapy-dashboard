@@ -12,7 +12,14 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
+import { css } from 'react-emotion'
+import { HashLoader } from 'react-spinners'
 const config = require('../../services/configuration')
+
+// emotion lib
+const override = css`
+    display: block;
+    margin: 100px auto 0 auto;`;
 
 const styles = theme => ({
   root: {
@@ -54,7 +61,8 @@ class Logger extends Component {
 
   state = {
     allActivities: [],
-    logStream: []
+    logStream: [],
+    loading: true
   }
 
   componentDidMount = async () => {
@@ -83,6 +91,9 @@ class Logger extends Component {
           // append a new data(account) to the existent state
         }) : [...prevState.logStream, { account: data.account, msg: [data.msg] }]
       }))
+      this.setState({
+        loading: false
+      })
     })
   }
 
@@ -104,7 +115,14 @@ class Logger extends Component {
         />)
     })
     return (
-      <div className="wrapper" >
+      <div className="wrapper">
+        <HashLoader
+          className={override}
+          sizeUnit={"px"}
+          size={50}
+          color={'#3f51b5'}
+          loading={this.state.loading}
+        />
         {logCards}
       </div>
     )
@@ -126,7 +144,7 @@ const LogItem = props => {
         <CardContent className={props.cssContent}>
           <Typography variant="subtitle1" color="textSecondary">
             @{props.accountName}
-              </Typography>
+          </Typography>
           <Table className={props.cssTable}>
             <TableBody>
               {rows}
