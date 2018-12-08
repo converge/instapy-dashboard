@@ -3,7 +3,7 @@
   "version": "0.2.2",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^3.6.0",
+    "@material-ui/core": "^3.6.1",
     "@material-ui/icons": "^3.0.1",
     "axios": "^0.18.0",
     "better-sqlite3": "^5.0.1",
@@ -13,10 +13,11 @@
     "express": "^4.16.4",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
+    "react-helmet": "^5.2.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
     "react-spinners": "^0.4.7",
-    "socket.io": "^2.1.1",
+    "socket.io": "^2.2.0",
     "tail": "^2.0.1",
     "typeface-montserrat": "^0.0.54",
     "typeface-roboto": "^0.0.54"

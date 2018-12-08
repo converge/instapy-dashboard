@@ -76,13 +76,22 @@ app.get('/get_all_activities', function (req, res) {
   try {
     const stmt = db.prepare(
       (
-        "SELECT recActivity.rowid, prof.name, recActivity.likes, \
-         recActivity.comments, recActivity.follows, recActivity.unfollows, \
-         recActivity.server_calls, strftime('%Y-%m-%d', recActivity.created) as day_filter  \
+        "SELECT prof.id as profile_id, prof.name, sum(recActivity.likes) as likes, \
+         sum(recActivity.comments) as comments, sum(recActivity.follows) as follows, \
+         sum(recActivity.unfollows) as unfollows, sum(recActivity.server_calls) as server_calls, \
+         strftime('%Y-%m-%d', recActivity.created) as day_filter \
          FROM recordActivity as recActivity LEFT JOIN profiles as prof \
          ON recActivity.profile_id = prof.id \
-         GROUP BY day_filter, prof.name ORDER BY recActivity.created desc"
+         GROUP BY day_filter ORDER BY recActivity.created desc"
       )
+      // (
+      //   "SELECT recActivity.rowid, prof.name, recActivity.likes, \
+      //    recActivity.comments, recActivity.follows, recActivity.unfollows, \
+      //    recActivity.server_calls, strftime('%Y-%m-%d', recActivity.created) as day_filter  \
+      //    FROM recordActivity as recActivity LEFT JOIN profiles as prof \
+      //    ON recActivity.profile_id = prof.id \
+      //    GROUP BY day_filter, prof.name ORDER BY recActivity.created desc"
+      // )
     )
     const rows = stmt.all()
     return res.status(200).json({
