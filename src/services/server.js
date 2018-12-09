@@ -34,7 +34,8 @@ app.use(cors({
     if (serverHost.indexOf(origin) !== -1) {
       return callback(null, true);
     } else {
-      return callback('origin not allowed!', false);
+      return callback(null, true);
+      // return callback('origin not allowed!', false);
     }
   }
 }))
@@ -84,16 +85,29 @@ app.get('/get_all_activities', function (req, res) {
          ON recActivity.profile_id = prof.id \
          GROUP BY day_filter ORDER BY recActivity.created desc"
       )
-      // (
-      //   "SELECT recActivity.rowid, prof.name, recActivity.likes, \
-      //    recActivity.comments, recActivity.follows, recActivity.unfollows, \
-      //    recActivity.server_calls, strftime('%Y-%m-%d', recActivity.created) as day_filter  \
-      //    FROM recordActivity as recActivity LEFT JOIN profiles as prof \
-      //    ON recActivity.profile_id = prof.id \
-      //    GROUP BY day_filter, prof.name ORDER BY recActivity.created desc"
-      // )
     )
     const rows = stmt.all()
+    return res.status(200).json({
+      data: rows
+    })
+  } catch (err) {
+    return res.status(500).send('Something went wrong')
+  }
+})
+
+app.get('/get_all_user_statistics', function(req, res) {
+  try {
+    const stmt = db.prepare(
+      (
+        "SELECT rowid, followers, following, total_posts, max(created), \
+        strftime('%Y-%m-%d', created) as day \
+        FROM accountsProgress \
+        WHERE profile_id = ? \
+        GROUP BY day \
+        ORDER BY created asc"
+      )
+    )
+    const rows = stmt.all(req.query.profileId)
     return res.status(200).json({
       data: rows
     })

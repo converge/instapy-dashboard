@@ -72,7 +72,6 @@ class MainBar extends Component {
               <ListItemText primary='Live Logs' />
             </ListItem>
           </Link>
-
         </List>
       </div >
 

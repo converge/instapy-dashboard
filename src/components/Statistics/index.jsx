@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import api from '../../services/api'
 
 import './index.css'
@@ -28,18 +29,22 @@ const styles = theme => ({
   table: {
     minWidth: 700,
   },
+  menuButton: {
+    marginLeft: 18,
+    textDecoration: 'None',
+  },
 });
 
 class UserDbData extends Component {
 
   state = {
-    all_activities: [],
+    allActivities: [],
     loading: true
   }
 
   componentDidMount() {
     this.getAllActivities()
-    // adds 5segs timer to reload database data
+    // adds 5secs timer to reload database data
     this.timerId = setInterval(() => {
       this.getAllActivities()
     }, 5000);
@@ -53,7 +58,7 @@ class UserDbData extends Component {
   getAllActivities = async () => {
     const response = await api.get('get_all_activities')
     this.setState({
-      all_activities: response.data.data
+      allActivities: response.data.data
     })
     this.setState({
       loading: false
@@ -61,9 +66,12 @@ class UserDbData extends Component {
   }
 
   render() {
+    
     const { classes } = this.props;
+    console.log(this.state.allActivities)
     return (
       <div className="wrapper">
+      <h1>Statistics</h1>
         <Paper className={classes.root}>
           <Table className={classes.table}>
             <TableHead>
@@ -78,11 +86,14 @@ class UserDbData extends Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {this.state.all_activities.map(row => {
+              {this.state.allActivities.map(row => {
                 return (
                   <TableRow key={row.rowid}>
                     <TableCell component="th" scope="row">
-                      {row.name}
+                      <Link to={`userStatistics/${row.profile_id}`} 
+                            className={classes.menuButton} >
+                        {row.name}
+                      </Link>
                     </TableCell>
                     <TableCell numeric>{row.likes}</TableCell>
                     <TableCell numeric>{row.comments}</TableCell>
