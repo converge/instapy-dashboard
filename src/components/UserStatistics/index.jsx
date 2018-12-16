@@ -18,6 +18,10 @@ const override = css`
     margin: 15px auto;`;
 
 const styles = theme => ({
+  wrapper: {
+    display: 'grid',
+    justifyContent: 'center',
+  },
   root: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
@@ -98,7 +102,7 @@ class AccountStatistics extends Component {
       rows = this.state.updatedUserStats
     }
     return (
-      <div className="wrapper">
+      <div className={classes.wrapper}>
         <h1>User Statistics</h1>
         <Paper className={classes.root}>
           <Table className={classes.table}>

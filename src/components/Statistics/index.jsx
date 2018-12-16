@@ -2,8 +2,6 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import api from '../../services/api'
 
-import './index.css'
-
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
@@ -21,6 +19,10 @@ const override = css`
     margin: 15px auto;`;
 
 const styles = theme => ({
+  wrapper: {
+    display: 'grid',
+    justifyContent: 'center',
+  },
   root: {
     width: '100%',
     marginTop: theme.spacing.unit * 3,
@@ -33,6 +35,9 @@ const styles = theme => ({
     marginLeft: 18,
     textDecoration: 'None',
   },
+  active: {
+    backgroundColor: 'yellow',
+  }
 });
 
 class UserDbData extends Component {
@@ -70,7 +75,7 @@ class UserDbData extends Component {
     const { classes } = this.props;
     console.log(this.state.allActivities)
     return (
-      <div className="wrapper">
+      <div className={classes.wrapper}>
       <h1>Statistics</h1>
         <Paper className={classes.root}>
           <Table className={classes.table}>
@@ -90,7 +95,7 @@ class UserDbData extends Component {
                 return (
                   <TableRow key={row.rowid}>
                     <TableCell component="th" scope="row">
-                      <Link to={`userStatistics/${row.profile_id}`} 
+                      <Link to={`userStatistics/${row.profile_id}`}
                             className={classes.menuButton} >
                         {row.name}
                       </Link>
