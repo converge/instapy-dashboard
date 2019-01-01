@@ -40,11 +40,30 @@ cd instapy-dashboard
 npm install
 ```
 
+## Windows Install
+
+### 1. Install Project Dependencies:
+
+**Official documentation from** https://www.npmjs.com/package/npm
+
+#### Super Easy Install
+npm is bundled with node.
+
+[Get the MSI](https://nodejs.org/en/download/). npm is in it.
+
+### 2. Install InstaPy-Dashboard
+
+```bash
+git clone https://github.com/converge/instapy-dashboard.git
+cd instapy-dashboard
+npm install
+```
+
 ## Project Setup
 
-```js
-vi src/services/configuration.js
+Edit the config file: `src/services/configuration.js`
 
+```js
 # InstaPy root folder
 instaPyFolder: '/path/to/InstaPy'
 
