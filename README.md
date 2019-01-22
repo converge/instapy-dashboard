@@ -91,5 +91,8 @@ npm start
 Activity Monitor:
 ![img](https://github.com/converge/instapy-dashboard/blob/master/screenshots/instapy-dashboard.png)
 
+User Statistics:
+![img](https://github.com/converge/instapy-dashboard/blob/master/screenshots/user-statistics-chart.png)
+
 Live Log:
 ![img](https://github.com/converge/instapy-dashboard/blob/master/screenshots/live-log.png)
