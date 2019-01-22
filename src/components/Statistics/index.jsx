@@ -73,7 +73,6 @@ class UserDbData extends Component {
   render() {
     
     const { classes } = this.props;
-    console.log(this.state.allActivities)
     return (
       <div className={classes.wrapper}>
       <h1>Statistics</h1>
@@ -82,11 +81,11 @@ class UserDbData extends Component {
             <TableHead>
               <TableRow>
                 <TableCell>profile</TableCell>
-                <TableCell numeric>likes</TableCell>
-                <TableCell numeric>comments</TableCell>
-                <TableCell numeric>follows</TableCell>
-                <TableCell numeric>unfollows</TableCell>
-                <TableCell numeric>server calls</TableCell>
+                <TableCell>likes</TableCell>
+                <TableCell>comments</TableCell>
+                <TableCell>follows</TableCell>
+                <TableCell>unfollows</TableCell>
+                <TableCell>server calls</TableCell>
                 <TableCell>created</TableCell>
               </TableRow>
             </TableHead>
@@ -100,12 +99,12 @@ class UserDbData extends Component {
                         {row.name}
                       </Link>
                     </TableCell>
-                    <TableCell numeric>{row.likes}</TableCell>
-                    <TableCell numeric>{row.comments}</TableCell>
-                    <TableCell numeric>{row.follows}</TableCell>
-                    <TableCell numeric>{row.unfollows}</TableCell>
-                    <TableCell numeric>{row.server_calls}</TableCell>
-                    <TableCell numeric>{row.day_filter}</TableCell>
+                    <TableCell>{row.likes}</TableCell>
+                    <TableCell>{row.comments}</TableCell>
+                    <TableCell>{row.follows}</TableCell>
+                    <TableCell>{row.unfollows}</TableCell>
+                    <TableCell>{row.server_calls}</TableCell>
+                    <TableCell>{row.day_filter}</TableCell>
                   </TableRow>
                 );
               })}

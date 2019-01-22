@@ -77,7 +77,7 @@ app.get('/get_all_activities', function (req, res) {
   try {
     const stmt = db.prepare(
       (
-        "SELECT prof.id as profile_id, prof.name, sum(recActivity.likes) as likes, \
+        "SELECT recActivity.rowid, prof.id as profile_id, prof.name, sum(recActivity.likes) as likes, \
          sum(recActivity.comments) as comments, sum(recActivity.follows) as follows, \
          sum(recActivity.unfollows) as unfollows, sum(recActivity.server_calls) as server_calls, \
          strftime('%Y-%m-%d', recActivity.created) as day_filter \

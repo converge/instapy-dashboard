@@ -12,6 +12,10 @@ import Paper from '@material-ui/core/Paper';
 import { HashLoader } from 'react-spinners'
 import { css } from 'react-emotion'
 
+// chart
+import ReactChartkick, { LineChart } from 'react-chartkick'
+import Chart from 'chart.js'
+
 // emotion lib
 const override = css`
     display: block;
@@ -57,7 +61,7 @@ class AccountStatistics extends Component {
           if (tempFollowers === 0) {
             // if first record, there isnt data to compare
             tempFollowers = stats.followers
-            return {...stats, newFollowers: '...'}
+            return { ...stats, newFollowers: '...' }
           } else {
             // newFollowers = current day followers - previous day followers
             // ex. yesterday: 100 followers, today 200, result: +100
@@ -101,6 +105,13 @@ class AccountStatistics extends Component {
     if (this.state.updatedUserStats.length !== 0) {
       rows = this.state.updatedUserStats
     }
+    ReactChartkick.addAdapter(Chart)
+    let chartData = {}
+    rows.map((item) =>
+      chartData[item.day] = item.newFollowers
+    )
+    console.log(chartData)
+    //data={[{"2017-05-13": 2, "2017-05-14": 5, ...}}
     return (
       <div className={classes.wrapper}>
         <h1>User Statistics</h1>
@@ -116,11 +127,11 @@ class AccountStatistics extends Component {
             </TableHead>
             <TableBody>
               {rows.map(row => {
-                return(
+                return (
                   <TableRow key={row.rowid}>
-                    <TableCell numeric>{row.newFollowers}</TableCell>
-                    <TableCell numeric>{row.followers}</TableCell>
-                    <TableCell numeric>{row.following}</TableCell>
+                    <TableCell>{row.newFollowers}</TableCell>
+                    <TableCell>{row.followers}</TableCell>
+                    <TableCell>{row.following}</TableCell>
                     <TableCell>{row.day}</TableCell>
                   </TableRow>
                 )
@@ -128,14 +139,19 @@ class AccountStatistics extends Component {
             </TableBody>
           </Table>
           <HashLoader
-          className={override}
-          sizeUnit={"px"}
-          size={50}
-          color={'#3f51b5'}
-          loading={this.state.loading}
-        />
+            className={override}
+            sizeUnit={"px"}
+            size={50}
+            color={'#3f51b5'}
+            loading={this.state.loading}
+          />
+
+        </Paper>
+        <Paper>
+          <LineChart data={chartData} />
         </Paper>
       </div>
+
     )
   }
 }
