@@ -95,7 +95,7 @@ class AccountStatistics extends Component {
       }
     })
     this.setState({
-      userStats: response.data.data
+      userStats: response.data
     })
   }
 
@@ -110,8 +110,6 @@ class AccountStatistics extends Component {
     rows.map((item) =>
       chartData[item.day] = item.newFollowers
     )
-    console.log(chartData)
-    //data={[{"2017-05-13": 2, "2017-05-14": 5, ...}}
     return (
       <div className={classes.wrapper}>
         <h1>User Statistics</h1>

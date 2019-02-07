@@ -63,7 +63,7 @@ class UserDbData extends Component {
   getAllActivities = async () => {
     const response = await api.get('get_all_activities')
     this.setState({
-      allActivities: response.data.data
+      allActivities: response.data
     })
     this.setState({
       loading: false
@@ -71,7 +71,6 @@ class UserDbData extends Component {
   }
 
   render() {
-    
     const { classes } = this.props;
     return (
       <div className={classes.wrapper}>
