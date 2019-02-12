@@ -22,12 +22,10 @@ sequelize
 // Authorizes log update
 const serverHost = config.allowedHosts
 io.origins((origin, callback) => {
-  // allow only authorized hosts to access log files
-  if (serverHost.indexOf(origin) !== -1) {
-    return callback(null, true)
-  } else {
+  if (serverHost.indexOf(origin) === -1) {
     return callback('origin not allowed', false);
   }
+  callback(null, true);
 });
 
 // Body Parser returns a function that acts as middleware. 
@@ -39,16 +37,7 @@ app.use(
   })
 )
 app.use(bodyParser.json())
-app.use(cors({
-  origin: function(origin, callback) {
-    if (serverHost.indexOf(origin) !== -1) {
-      return callback(null, true);
-    } else {
-      return callback(null, true);
-      // return callback('origin not allowed!', false);
-    }
-  }
-}))
+app.use(cors())
 
 // build log file structure
 const logsFolder = utils.getLogsFolder(config.instaPyFolder)
