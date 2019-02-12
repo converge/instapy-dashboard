@@ -90,14 +90,13 @@ app.get('/get_all_activities', function (req, res) {
                      FROM recordActivity as recActivity LEFT JOIN profiles as prof \
                      ON recActivity.profile_id = prof.id \
                      GROUP BY day_filter ORDER BY recActivity.created desc", {type: sequelize.QueryTypes.SELECT}).then(rows => {
-                        console.log(rows[0])
                         return res.status(200).json(rows)
                     }).catch(err => {
-                        console.log(err)
+                        console.log('error: ', err)
                         return res.status(500).send('Something went wrong')
                     })
   } catch (err) {
-    console.log(err)
+    console.log('error: ', err)    
     return res.status(500).send('Something went wrong')
   }
 })
@@ -114,14 +113,13 @@ app.get('/get_all_user_statistics', function(req, res) {
                       raw: true,
                       replacements: [req.query.profileId]
                     }).then(rows => {
-                      console.log(rows)
                       return res.status(200).json(rows)
                     }).catch(err => {
-                      console.log(err)
+                      console.log('error: ', err)
                       return res.status(500).send('Something went wrong')
                     })
     } catch (err) {
-      console.log(err)
+      console.log('error: ', err)      
       return res.status(500).send('Something went wrong')
     }
 })
