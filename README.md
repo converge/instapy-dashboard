@@ -74,6 +74,8 @@ serverHost: 'http://localhost:3001'
 allowedHosts: 'http://localhost:3000'
 ```
 
+Windows user ? Don't add ```c:``` in the ```InstaPyFolder```, it should be ```\path\to\InstaPy``` without the ```c:```
+
 ## Start the project
 
 ```bash
