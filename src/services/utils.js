@@ -6,7 +6,7 @@ const path = require('path')
 module.exports = {
   getLogsFolder: function (instapyFolder) {
     instapyFolder += '/logs'
-    folders = fs.readdirSync(instapyFolder).filter((file) =>
+    const folders = fs.readdirSync(instapyFolder).filter((file) =>
       fs.lstatSync(path.join(instapyFolder, file)).isDirectory())
     return folders
   }

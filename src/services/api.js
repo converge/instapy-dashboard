@@ -1,9 +1,7 @@
 import axios from 'axios'
-import config from './configuration'
 
 const api = axios.create({
-  // set your server ip here
-  baseURL: config.serverHost
+  baseURL: process.env.REACT_APP_API_ENTRY_POINT
 })
 
 export default api

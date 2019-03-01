@@ -61,17 +61,23 @@ npm install
 
 ## Project Setup
 
-Edit the config file: `src/services/configuration.js`
+Create a ```.env``` with this content:
 
 ```js
-# InstaPy root folder
-instaPyFolder: '/path/to/InstaPy'
+# MacOS: /Users/your_user_name/InstaPy
+# you can also check this information when running your quickstart.py, 
+# the first lines contains
+# -> Workspace in use: "/Users/converge/InstaPy"
+INSTAPY_FOLDER=/Users/converge/InstaPy
+# if using only on localhost, keep it:
+ALLOWED_HOSTS=http://localhost:3000 http://192.168.0.100:3000
+REACT_APP_API_ENTRY_POINT=http://localhost:3001
 
-# server host (your computer host)
-serverHost: 'http://localhost:3001'
-
-# allowed connection
-allowedHosts: 'http://localhost:3000'
+# basic setup, ok to keep it ->
+# Node port
+NODE_PORT=3001
+# ReactJS Create APP port
+PORT=3000
 ```
 
 Windows user ? Don't add ```c:``` in the ```InstaPyFolder```, it should be ```\path\to\InstaPy``` without the ```c:```
@@ -84,9 +90,7 @@ npm start
 
 ### Load the dashboard at http://localhost:3000
 
-#### Log will start to show up when you start your InstaPy instance
-
-#### For not localhost connection, check src/services/configuration.js for more instructions
+#### Logs will start showing up when you start your InstaPy instance.
 
 ## Screenshot:
 
