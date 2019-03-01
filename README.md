@@ -61,7 +61,7 @@ npm install
 
 ## Project Setup
 
-Create a ```.env``` with this content:
+Create a ```.env``` on root folder of the project with this content:
 
 ```js
 # MacOS: /Users/your_user_name/InstaPy
