@@ -14,7 +14,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import { css } from 'react-emotion'
 import { HashLoader } from 'react-spinners'
-const config = require('../../services/configuration')
 
 // emotion lib
 const override = css`
@@ -70,7 +69,7 @@ class Logger extends Component {
   }
 
   getAllActivities = async () => {
-    const io = socket(config.serverHost)
+    const io = socket(process.env.REACT_APP_API_ENTRY_POINT)
     io.on('newLogData', data => {
       // first record, arrow function to bring previous state
       this.setState(prevState => ({
