@@ -1,3 +1,6 @@
+require('dotenv').config({
+  path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env'
+})
 const routes = require('express').Router()
 const Sequelize = require('sequelize')
 const INSTAPY_FOLDER = process.env.INSTAPY_FOLDER
@@ -14,7 +17,7 @@ sequelize
     console.log('Connection has been established successfully.')
   }, function (err) {
     console.log('Unable to connect to the database:', err)
-  });
+  })
 
 // ROUTES
 // Return activies from all users on our database
