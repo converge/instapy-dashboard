@@ -1,24 +1,24 @@
 import React, { Component } from 'react'
 import socket from 'socket.io-client'
 
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
-import AccountBox from '@material-ui/icons/AccountBoxRounded';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import Avatar from '@material-ui/core/Avatar'
+import AccountBox from '@material-ui/icons/AccountBoxRounded'
+import Card from '@material-ui/core/Card'
+import CardContent from '@material-ui/core/CardContent'
+import Typography from '@material-ui/core/Typography'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableRow from '@material-ui/core/TableRow'
 import { css } from 'react-emotion'
 import { HashLoader } from 'react-spinners'
 
 // emotion lib
 const override = css`
     display: block;
-    margin: 100px auto 0 auto;`;
+    margin: 100px auto 0 auto;`
 
 const styles = theme => ({
   root: {
@@ -98,7 +98,7 @@ class Logger extends Component {
 
 
   render() {
-    const { classes } = this.props;
+    const { classes } = this.props
     let logCards = this.state.logStream.map((item, index) => {
       return (
         <LogItem key={item.account + index}
@@ -160,4 +160,4 @@ Logger.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles, { withTheme: true })(Logger);
+export default withStyles(styles, { withTheme: true })(Logger)

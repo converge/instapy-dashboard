@@ -2,21 +2,21 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import api from '../../services/api'
 
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import Paper from '@material-ui/core/Paper'
 import { HashLoader } from 'react-spinners'
 import { css } from 'react-emotion'
 
 // emotion lib
 const override = css`
     display: block;
-    margin: 15px auto;`;
+    margin: 15px auto;`
 
 const styles = theme => ({
   wrapper: {
@@ -44,34 +44,37 @@ class UserDbData extends Component {
 
   state = {
     allActivities: [],
-    loading: true
+    loading: true,
+    timeId: null
   }
 
   componentDidMount() {
     this.getAllActivities()
     // adds 5secs timer to reload database data
-    this.timerId = setInterval(() => {
+    const timeId = setInterval(() => {
       this.getAllActivities()
-    }, 5000);
+    }, 5000)
+    // update Timer Id
+    this.setState({
+      timeId
+    })
   }
 
   componentWillUnmount() {
     // clean timer
-    clearInterval(this.timeId)
+    clearInterval(this.state.timeId)
   }
 
   getAllActivities = async () => {
     const response = await api.get('get_all_activities')
     this.setState({
-      allActivities: response.data
-    })
-    this.setState({
+      allActivities: response.data,
       loading: false
     })
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes } = this.props
     return (
       <div className={classes.wrapper}>
       <h1>Statistics</h1>
@@ -126,4 +129,4 @@ UserDbData.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(UserDbData);
+export default withStyles(styles)(UserDbData)

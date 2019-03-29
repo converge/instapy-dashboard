@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import api from '../../services/api'
 
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
+import PropTypes from 'prop-types'
+import { withStyles } from '@material-ui/core/styles'
+import Table from '@material-ui/core/Table'
+import TableBody from '@material-ui/core/TableBody'
+import TableCell from '@material-ui/core/TableCell'
+import TableHead from '@material-ui/core/TableHead'
+import TableRow from '@material-ui/core/TableRow'
+import Paper from '@material-ui/core/Paper'
 import { HashLoader } from 'react-spinners'
 import { css } from 'react-emotion'
 
@@ -100,7 +100,7 @@ class AccountStatistics extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes } = this.props
     let rows = []
     if (this.state.updatedUserStats.length !== 0) {
       rows = this.state.updatedUserStats
@@ -158,4 +158,4 @@ AccountStatistics.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(AccountStatistics);
+export default withStyles(styles)(AccountStatistics)
