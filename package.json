@@ -19,7 +19,7 @@
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.1.8",
     "react-spinners": "^0.4.8",
-    "sequelize": "^4.42.0",
+    "sequelize": "^5.3.1",
     "socket.io": "^2.2.0",
     "sqlite3": "^4.0.6",
     "tail": "^2.0.2",
@@ -45,7 +45,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "nodemon": "^1.18.10",
+    "nodemon": "^1.18.11",
     "supertest": "^3.4.2"
   }
 }
