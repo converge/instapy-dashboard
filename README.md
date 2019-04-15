@@ -1,4 +1,3 @@
-
 ## MacOS Install
 
 ### 1. Install Project Dependencies:
@@ -47,6 +46,7 @@ npm install
 **Official documentation from** https://www.npmjs.com/package/npm
 
 #### Super Easy Install
+
 npm is bundled with node.
 
 [Get the MSI](https://nodejs.org/en/download/). npm is in it.
@@ -61,11 +61,11 @@ npm install
 
 ## Project Setup
 
-Create a ```.env``` on root folder of the project with this content:
+Create a `.env` file on root folder of the project with following content:
 
 ```js
 # MacOS: /Users/your_user_name/InstaPy
-# you can also check this information when running your quickstart.py, 
+# you can also check this information when running your quickstart.py,
 # the first lines contains
 # -> Workspace in use: "/Users/converge/InstaPy"
 INSTAPY_FOLDER=/Users/converge/InstaPy
@@ -80,7 +80,15 @@ NODE_PORT=3001
 PORT=3000
 ```
 
-Windows user ? Don't add ```c:``` in the ```InstaPyFolder```, it should be ```\path\to\InstaPy``` without the ```c:```
+Windows user ? Don't add `c:` in the `InstaPyFolder`, it should be `\path\to\InstaPy` without the `c:`
+
+## Check if everything is ok
+
+Create a `.env.test` file on root folder with same content of `.env` and run:
+
+```bash
+npm run test
+```
 
 ## Start the project
 
