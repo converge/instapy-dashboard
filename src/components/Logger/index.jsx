@@ -71,17 +71,19 @@ class Logger extends Component {
   getAllActivities = async () => {
     const io = socket(process.env.REACT_APP_API_ENTRY_POINT)
     io.on('newLogData', data => {
-      // first record, arrow function to bring previous state
+      // data validation
       this.setState(prevState => ({
-        // check if new data(account) is contained on old state
-        // if contained, retrieve all data until ->
+        // check if new data(account) is contained in the old state
+        // if contained, retrieve all data
         logStream: prevState.logStream.find(item => item.account === data.account) ? prevState.logStream.map(item => {
+          // set string length limit
           data.msg = data.msg.substring(0, 140)
-          // until reach the correct index to update it
-          if (item.account === data.account && item.msg.length <= 5) {
-            // spread and add the new msg to the existent the array
+          // set amount of lines to be displayed
+          if (item.account === data.account && item.msg.length <= 19) {
+            // spread and add the new msg to the existent array
             return { ...item, msg: [...item.msg, data.msg] }
-          } else if (item.account === data.account && item.msg.length > 5) {
+          } else if (item.account === data.account && item.msg.length >= 19) {
+            // delete older log lines
             item.msg.shift()
             return { ...item, msg: [...item.msg, data.msg] }
           } else {

@@ -62,7 +62,7 @@ routes.get('/get_all_user_statistics', function (req, res) {
       FROM accountsProgress
       WHERE profile_id = ?
       GROUP BY day
-      ORDER BY created asc`,
+      ORDER BY created desc`,
       {
         type: sequelize.QueryTypes.SELECT,
         raw: true,
