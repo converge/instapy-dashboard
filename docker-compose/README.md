@@ -40,3 +40,5 @@ PORT=3000
 <br>`docker-compose down`
 * Display output logs
 <br>`docker logs -f instapy_dashboard_1`
+* To see if the container is running
+<br>`docker ps`
