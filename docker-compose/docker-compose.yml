@@ -1,0 +1,22 @@
+version: '3'
+services:
+  dashboard:
+#    environment:
+#      - PYTHONUNBUFFERED=0
+#      - INSTAPY_WORKSPACE=/code/InstaPy
+    build:
+      context: .
+      dockerfile: ./build/Dockerfile
+#    depends_on:
+#      - selenium
+    volumes:
+      - ../:/code
+      - ../../instapy-docker/docker-compose/InstaPy/:/code/InstaPy
+#      - ../../instapy-docker/docker-compose/InstaPy/db/:/code/db
+
+#  selenium:
+#    image: selenium/standalone-chrome
+    ports:
+      - "127.0.0.1:3000:3000"
+      - "127.0.0.1:3001:3001"
+    shm_size: 128M
