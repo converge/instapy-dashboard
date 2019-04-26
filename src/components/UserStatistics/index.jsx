@@ -11,6 +11,7 @@ import TableRow from '@material-ui/core/TableRow'
 import Paper from '@material-ui/core/Paper'
 import { HashLoader } from 'react-spinners'
 import { css } from 'react-emotion'
+import Moment from 'moment'
 
 // chart
 import ReactChartkick, { LineChart } from 'react-chartkick'
@@ -69,7 +70,7 @@ class AccountStatistics extends Component {
             if (newFollowers > 0) {
               newFollowers = `+${newFollowers}`
             } else if (newFollowers < 0) {
-              newFollowers = `-${newFollowers}`
+              newFollowers = `${newFollowers}`
             }
             tempFollowers = stats.followers
             return {
@@ -105,28 +106,42 @@ class AccountStatistics extends Component {
     if (this.state.updatedUserStats.length !== 0) {
       rows = this.state.updatedUserStats
     }
+
+    const compareRowsByDateDesc =(a, b) => {
+      return Moment(b.day).diff(Moment(a.day))
+    }
+
     ReactChartkick.addAdapter(Chart)
-    let chartData = {}
-    rows.map((item) =>
-      chartData[item.day] = item.newFollowers
+    let followersFollowingChartData = [{name: 'Followers', data: {}}, {name: 'Following', data: {}}]
+    let newFollowersChartData = [{name: 'New Followers', data: {}}]
+    rows.forEach((item) => {
+        followersFollowingChartData[0]['data'][item.day] = item.followers
+        followersFollowingChartData[1]['data'][item.day] = item.following
+        newFollowersChartData[0]['data'][item.day] = item.newFollowers
+      }
     )
+
     return (
       <div className={classes.wrapper}>
         <h1>User Statistics</h1>
+        <Paper>
+          <LineChart data={followersFollowingChartData} />
+          <LineChart data={newFollowersChartData} />
+        </Paper>
         <Paper className={classes.root}>
           <Table className={classes.table}>
             <TableHead>
               <TableRow>
                 <TableCell>New Followers</TableCell>
-                <TableCell>followers</TableCell>
-                <TableCell>following</TableCell>
-                <TableCell>created</TableCell>
+                <TableCell>Followers</TableCell>
+                <TableCell>Following</TableCell>
+                <TableCell>Created</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map(row => {
+              {rows.sort(compareRowsByDateDesc).map(row => {
                 return (
-                  <TableRow key={row.rowid}>
+                  <TableRow key={row.id}>
                     <TableCell>{row.newFollowers}</TableCell>
                     <TableCell>{row.followers}</TableCell>
                     <TableCell>{row.following}</TableCell>
@@ -145,9 +160,7 @@ class AccountStatistics extends Component {
           />
 
         </Paper>
-        <Paper>
-          <LineChart data={chartData} />
-        </Paper>
+
       </div>
 
     )
