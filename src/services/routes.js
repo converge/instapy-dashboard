@@ -7,8 +7,7 @@ const INSTAPY_FOLDER = process.env.INSTAPY_FOLDER
 
 // Database connection
 const sequelize = new Sequelize(
-  `sqlite:${INSTAPY_FOLDER}/db/instapy.db`,
-  { operatorsAliases: false }
+  `sqlite:${INSTAPY_FOLDER}/db/instapy.db`
 )
 
 sequelize
