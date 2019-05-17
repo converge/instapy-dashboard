@@ -1,0 +1,21 @@
+version: '3'
+services:
+  frontend:
+    # set image to be used
+    image:
+      instapy-dashboard
+    # set where Dockerfile is located
+    build: .
+    container_name: 'instapy-dashboard-container'
+    # React and Node ports (dev mode)
+    ports:
+      - '3000:3000'
+      - '3001:3001'
+    volumes:
+      - ./__tests__:/app/__tests__/
+      - ./public:/app/public/
+      - ./src:/app/src/
+      - .env:/app/.env
+      - ${INSTAPY_FOLDER}:${INSTAPY_FOLDER}
+    # start frontend and backend
+    command: npm start

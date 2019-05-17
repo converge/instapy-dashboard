@@ -1,3 +1,17 @@
+## Docker Setup
+
+### 1. Project Setup
+
+Follow the instructions at: [Project Setup](#project-setup)
+
+### 2. Run Docker Compose
+
+```bash
+docker-compose -f docker-compose.yml up
+```
+
+Wait until you see the "Compiled successfully!" message, and load it at http://localhost:3000
+
 ## MacOS Install
 
 ### 1. Install Project Dependencies:
