@@ -1,3 +1,5 @@
+### Unfortunately this project was discontinued. Thank you all for the support, issues and PRs.
+
 ## Docker Setup
 
 ### 1. Project Setup
