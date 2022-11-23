@@ -22,7 +22,7 @@
     "react-scripts": "^2.1.8",
     "react-spinners": "^0.4.8",
     "sequelize": "^5.8.5",
-    "socket.io": "^2.2.0",
+    "socket.io": "^2.5.0",
     "sqlite3": "^4.0.7",
     "tail": "^2.0.2",
     "typeface-montserrat": "^0.0.54",
